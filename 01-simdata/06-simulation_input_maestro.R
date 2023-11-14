@@ -110,7 +110,10 @@ saveRDS(simdf, "01-simdata/simulation_maestro.RDS")
 ### Addendum 10/14/2023: Subset for DISCent cases    ####
 #++++++++++++++++++++++++++++++++++++++++++
 #TODO expand out in future
-simdf <- simdf %>%
+simdfOG <- simdf
+simdf <- simdfOG %>%
+  dplyr::filter(mscale == 0 & lambdaCOI < 1)
+
 #......................
 # now split
 #......................
