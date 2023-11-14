@@ -16,6 +16,8 @@ todo.txt
 gopolySimIBD.Rproj
 sanbox/
 nohup.out
+todo.txt
+
 *.Rout
 # input  and result files too large for GH
 01-simdata/sim_inputs/

@@ -34,7 +34,7 @@ modname <- migmatdf$modname
 ### Part 1: 1st Level (Ind) Varying Parameters        ####
 #++++++++++++++++++++++++++++++++++++++++++
 lambdaCOI <-  readRDS("01-simdata/sim_params/optim_lambda.RDS")
-mscale <- c(0, 0.25, 0.5, 0.75, 1) # mix of superinfection vs coinfection \
+mscale <- c(0, 0.25, 0.5, 0.75, 1) # mix of superinfection vs coinfection
 
 #++++++++++++++++++++++++++++++++++++++++++
 ### Part 2: 2nd Level (Spatial) Varying Parameters        ####
@@ -106,7 +106,14 @@ simdf$dwnsmplnum <- 5
 # save out for posterity
 saveRDS(simdf, "01-simdata/simulation_maestro.RDS")
 
+#++++++++++++++++++++++++++++++++++++++++++
+### Addendum 10/14/2023: Subset for DISCent cases    ####
+#++++++++++++++++++++++++++++++++++++++++++
+#TODO expand out in future
+simdf <- simdf %>%
+#......................
 # now split
+#......................
 simdflist <- split(simdf, f = 1:nrow(simdf))
 simdflistnm <- as.character( purrr::map_int(simdflist, "randseedkey") )
 # now save out
@@ -126,3 +133,5 @@ maestro_snake_map <- tibble::tibble(
   output = paste0("01-simdata/swfsim_results/", "simswf_result_key", simdflistnm, ".RDS")
 )
 readr::write_tsv(maestro_snake_map, "01-simdata/polySimIBD_simulationrun_maestro.tsv")
+
+
