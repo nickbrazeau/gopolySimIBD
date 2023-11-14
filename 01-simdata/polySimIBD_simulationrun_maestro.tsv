@@ -1,4 +1,4 @@
-input	output
+input	outpath
 01-simdata/sim_inputs/simswf_input_key422533.RDS	01-simdata/swfsim_results/simswf_result_key422533.RDS
 01-simdata/sim_inputs/simswf_input_key335602.RDS	01-simdata/swfsim_results/simswf_result_key335602.RDS
 01-simdata/sim_inputs/simswf_input_key488454.RDS	01-simdata/swfsim_results/simswf_result_key488454.RDS
