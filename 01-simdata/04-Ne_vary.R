@@ -12,7 +12,7 @@ library(tidyverse)
 #............................................................
 # read in and manip
 #...........................................................
-migmatdf <- readRDS("01-simdata/00-simulation_setup/inputs/migmat_framework.RDS")
+migmatdf <- readRDS("01-simdata/sim_params/migmat_framework.RDS")
 # replicate migmat type 1 and type 2
 migmatdf <- dplyr::bind_rows(migmatdf, migmatdf[1:2,])
 migmatdf$modnameNe <- NA
@@ -37,4 +37,4 @@ migmatdf$NeVaryMult[4:5] <- list(expmult)
 migmatdf <- migmatdf %>%
   dplyr::select(c("modnameNe", "modname", "NeVaryMult"))
 saveRDS(migmatdf,
-        "01-simdata/00-simulation_setup/inputs/NeVary_migmat_framework.RDS")
+        "01-simdata/sim_params/NeVary_migmat_framework.RDS")

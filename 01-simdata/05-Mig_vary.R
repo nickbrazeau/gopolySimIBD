@@ -12,17 +12,17 @@ library(tidyverse)
 #............................................................
 # read in and manip
 #...........................................................
-migmatdf <- readRDS("01-simdata/00-simulation_setup/inputs/migmat_framework.RDS") %>%
+migmatdf <- readRDS("01-simdata/sim_params/migmat_framework.RDS") %>%
   dplyr::select(-c("migmat"))
 # I want to migration to vary such that home is preferred 99% ... 50%
-MigVaryMult <- c(99, 95, 90, 75, 50)
+MigVaryFct <- c(99, 95, 90, 75, 50)
 # expand out
-migmatdf <- tidyr::expand_grid(migmatdf, MigVaryMult)
+migmatdf <- tidyr::expand_grid(migmatdf, MigVaryFct)
 
 #............................................................
 # out
 #...........................................................
 migmatdf <- migmatdf %>%
-  dplyr::select(c("modname", "MigVaryMult"))
+  dplyr::select(c("modname", "MigVaryFct"))
 saveRDS(migmatdf,
-        "01-simdata/00-simulation_setup/inputs/MigVary_migmat_framework.RDS")
+        "01-simdata/sim_params/MigVary_migmat_framework.RDS")

@@ -24,7 +24,7 @@ library(cowplot)
 ##### PART 0: Template Pieces #####
 #...........................................................
 # read in coords
-squarecoords <- readRDS("01-simdata/00-simulation_setup/inputs/squarecoords.rds")
+squarecoords <- readRDS("01-simdata/sim_params/squarecoords.rds")
 
 # storage
 migmatdf <- tibble::tibble(modname = c("torus",
@@ -134,15 +134,15 @@ migmatdf$migmat[migmatdf$modname == "dexter"] <- list(dextermigmat)
 #............................................................
 # save out
 #...........................................................
-dir.create("01-simdata/00-simulation_setup/inputs/migmat_surface_grids/")
+dir.create("01-simdata/sim_params/migmat_surface_grids/")
 saveRDS(migmatdf$migmat[[1]],
-        "01-simdata/00-simulation_setup/inputs/migmat_surface_grids/torus.RDS")
+        "01-simdata/sim_params/migmat_surface_grids/torus.RDS")
 saveRDS(migmatdf$migmat[[2]],
-        "01-simdata/00-simulation_setup/inputs/migmat_surface_grids/bound.RDS")
+        "01-simdata/sim_params/migmat_surface_grids/bound.RDS")
 saveRDS(migmatdf$migmat[[3]],
-        "01-simdata/00-simulation_setup/inputs/migmat_surface_grids/dexter.RDS")
+        "01-simdata/sim_params/migmat_surface_grids/dexter.RDS")
 saveRDS(migmatdf,
-        "01-simdata/00-simulation_setup/inputs/migmat_framework.RDS")
+        "01-simdata/sim_params/migmat_framework.RDS")
 
 #............................................................
 ##### Plot Out Results #####
@@ -203,7 +203,7 @@ plotObjs[[3]] <- plotObjs[[3]] +
 # out
 p1 <- cowplot::plot_grid(plotObjs[[1]], plotObjs[[2]], plotObjs[[3]],
                    nrow = 1)
-jpeg("sandbox/migmat_surfaces_arrows.jpg", width = 18, height = 8,
+jpeg("01-simdata/sim_params/migmat_surfaces_arrows.jpg", width = 18, height = 8,
      units = "in", res = 500)
 p1
 graphics.off()

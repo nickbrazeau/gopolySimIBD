@@ -1,1 +1,23 @@
+# MAC files
+.DS_Store
+
+# History files
+.Rhistory
+.Rapp.history
 .Rproj.user
+.RData
+
+
+# Data files I'm generating
+sandbox/
+old/
+inst/doc
+todo.txt
+gopolySimIBD.Rproj
+sanbox/
+nohup.out
+*.Rout
+# input  and result files too large for GH
+01-simdata/sim_inputs/
+01-simdata/swfsim_results/
+simdata/disc_results/

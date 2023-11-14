@@ -22,7 +22,7 @@ squarecoords <- squarecoords %>%
 
 # save out basic coords
 saveRDS(object = squarecoords,
-        "01-simdata/00-simulation_setup/inputs/squarecoords.rds")
+        "01-simdata/sim_params/squarecoords.rds")
 
 
 
@@ -70,5 +70,5 @@ locatcomb <- locatcomb %>%
 # expect this to be lower tri + upper tri + diagonals
 goodegg:::assert_eq(nrow(locatcomb), choose(25,2)*2 + 25)
 # save out for downstream
-saveRDS(locatcomb, "01-simdata/00-simulation_setup/inputs/locatcombo.rds")
+saveRDS(locatcomb, "01-simdata/sim_params/locatcombo.rds")
 
