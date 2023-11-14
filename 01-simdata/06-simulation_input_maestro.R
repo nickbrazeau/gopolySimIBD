@@ -122,7 +122,7 @@ simdflistnm <- as.character( purrr::map_int(simdflist, "randseedkey") )
 # now save out
 dir.create("01-simdata/sim_inputs", recursive = T)
 mapply(function(x,y) {
-  saveRDS(x, file = paste0("01-simdata/sim_inputs/", "simswf_input_key-", y, ".RDS"))
+  saveRDS(x, file = paste0("01-simdata/sim_inputs/", "simswf_input_key", y, ".RDS"))
   return(0)
 }, x = simdflist, y = simdflistnm)
 
@@ -133,7 +133,7 @@ mapply(function(x,y) {
 #++++++++++++++++++++++++++++++++++++++++++
 maestro_snake_map <- tibble::tibble(
   input = paste0("01-simdata/sim_inputs/", "simswf_input_key", simdflistnm, ".RDS"),
-  outpath = paste0("01-simdata/swfsim_results/", "simswf_result_key", simdflistnm, ".RDS")
+  outpath = paste0("swfsim_results/", "simswf_result_key", simdflistnm, ".RDS")
 )
 readr::write_tsv(maestro_snake_map, "01-simdata/polySimIBD_simulationrun_maestro.tsv")
 
