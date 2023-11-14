@@ -255,5 +255,3 @@ saveRDS(runout,
 # turn warnings back to default
 options(warn = defaultwarnings)
 
-# return success
-return(0)
