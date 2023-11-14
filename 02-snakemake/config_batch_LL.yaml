@@ -1,5 +1,5 @@
 # configuration for simulation runs
 
 rroot: /proj/ideel/meshnick/users/NickB/Projects/gopolySimIBD
-simmap: /proj/ideel/meshnick/users/NickB/Projects/gopolySimIBD/01-simdata/00_snakeinput_map.tsv
+simmap: /proj/ideel/meshnick/users/NickB/Projects/gopolySimIBD/01-simdata/polySimIBD_simulationrun_maestro.tsv
 outdir: /work/users/n/f/nfb/Projects/gopolySimIBD/polySimIBD_generated_runs/
