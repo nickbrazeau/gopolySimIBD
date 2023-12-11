@@ -2,4 +2,5 @@
 
 rroot: /proj/ideel/meshnick/users/NickB/Projects/gopolySimIBD/
 simmap: /proj/ideel/meshnick/users/NickB/Projects/gopolySimIBD/01-simdata/polySimIBD_simulationrun_maestro.tsv
+geodistroot: /proj/ideel/meshnick/users/NickB/Projects/gopolySimIBD/01-simdata/sim_params/locatcombo.rds
 outdir: /work/users/n/f/nfb/Projects/gopolySimIBD/polySimIBD_generated_runs/

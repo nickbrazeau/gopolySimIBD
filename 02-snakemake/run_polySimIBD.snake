@@ -16,7 +16,7 @@ import pandas as pd
 ## read project-specific configuration options and functions
 RROOT = config["rroot"]
 OUTROOT = config["outdir"]
-
+GEODISTROOT = config["geodistroot"]
 def read_manifest(file_path):
     # read manifest and extract out relevant params
     df = pd.read_csv(file_path, sep='\t')
@@ -41,11 +41,13 @@ rule run_simulation:
     params:
         rexec = RROOT + "R/polySimIBD_simswf_wrapper.R",
         inputpath = lambda wildcards: sim_dict[wildcards.outpath]['input'],
+        geodist = GEODISTROOT,
         outdir = OUTROOT,
     shell:
         r"""
         Rscript {params.rexec} \
         --input {params.inputpath} \
+        --geodist {params.geodist}
         --output {output} \
         2> {log}
         """

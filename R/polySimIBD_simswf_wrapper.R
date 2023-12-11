@@ -113,6 +113,21 @@ get_swfsim_2_ibd <- function(swfsim, N, dwnsmplnum){
   ret <- tibble::as_tibble(comb_hosts_df, .name_repair = "minimal") %>%
     magrittr::set_colnames(c("smpl1", "smpl2")) %>%
     dplyr::mutate(gendist = as.vector(unlist(ibd)))
+
+  # apply demes
+  dms <- as.numeric( cut(dwnsmpl, breaks = c(1,cumsum(N))) ) #inelligent coercion of factor to numeric to represent demes
+  demeliftoverx <- tibble::tibble(smpl1 = dwnsmpl,
+                                  deme1 = dms)
+  demeliftovery <- tibble::tibble(smpl2 = dwnsmpl,
+                                  deme2 = dms)
+  #......................
+  # bring together
+  #......................
+  ret <- ret %>%
+    dplyr::left_join(., demeliftoverx, by = "smpl1") %>%
+    dplyr::left_join(., demeliftovery, by = "smpl2")
+
+
   return(ret)
 }
 
@@ -200,6 +215,11 @@ option_list=list(
               help = paste("Input filename to read simulation guides from"),
               metavar = "character"),
 
+  make_option(c("-g", "--geodist"),
+              type = "character", default = NULL,
+              help = paste("Geodist file that correlates to deme locations/distances"),
+              metavar = "character"),
+
   make_option(c("-o", "--output"),
               type = "character", default = NULL,
               help = paste("Output filename to write polySimIBD:sim_swf Simulation Realization and IBD resuls"),
@@ -228,6 +248,8 @@ MigVaryFct <- simguide$MigVaryFct
 migmat <- simguide$migmat[[1]]
 dwnsmplnum <- simguide$dwnsmplnum
 output <- opt$output
+geodist <- opt$geodist
+
 
 ### Call Seed for Reproducibility
 RNGkind(sample.kind = "Rounding")
@@ -249,6 +271,14 @@ runout <- run_polySimIBD_swf_2_ibd(randseedkey = randseedkey,
                                    MigVaryFct = MigVaryFct,
                                    migmat = migmat,
                                    dwnsmplnum = dwnsmplnum)
+#......................
+# bring in geodist
+#......................
+geodist <- readRDS(geodist)
+runout <- runout %>%
+  dplyr::left_join(., geodist, by = c("deme1", "deme2"))
+
+
 saveRDS(runout,
         file = output)
 
