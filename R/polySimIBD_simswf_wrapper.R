@@ -275,7 +275,7 @@ runout <- run_polySimIBD_swf_2_ibd(randseedkey = randseedkey,
 # bring in geodist
 #......................
 geodist <- readRDS(geodist)
-runout <- runout %>%
+runout[[2]] <- runout[[2]] %>%
   dplyr::left_join(., geodist, by = c("deme1", "deme2"))
 
 
